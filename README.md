@@ -1,15 +1,33 @@
-# PAT-2-SUBTASK-1
-REASERCH ON MORSE CODE SYSTEM
-# Morse Code Research
 
-## Overview
-Morse code was created by Samuel Morse and Alfred Vail in the 1830s as a way to encode text using electrical pulses.
+#include <iostream>
+#include <map>
+using namespace std;
 
-## Historical Context
-The system uses short and long signals (dots and dashes) to represent letters and numbers. It was widely used in early telegraph systems and radio communications.
+// Define Morse code mappings
+map<char, string> morseCode = {
+    {'A', ".-"}, {'B', "-..."}, {'C', "-.-."}, {'D', "-.."}, {'E', "."},
+    {'F', "..-."}, {'G', "--."}, {'H', "...."}, {'I', ".."}, {'J', ".---"},
+    {'K', "-.-"}, {'L', ".-.."}, {'M', "--"}, {'N', "-."}, {'O', "---"},
+    {'P', ".--."}, {'Q', "--.-"}, {'R', ".-."}, {'S', "..."}, {'T', "-"},
+    {'U', "..-"}, {'V', "...-"}, {'W', ".--"}, {'X', "-..-"}, {'Y', "-.--"},
+    {'Z', "--.."}, {' ', " "}  // Preserve spaces between words
+};
 
-## Example:
-SOS = `... --- ...`
+string translateToMorse(string text) {
+    string morse = "";
+    for (char c : text) {
+        if (morseCode.find(toupper(c)) != morseCode.end()) {
+            morse += morseCode[toupper(c)] + " ";
+        }
+    }
+    return morse;
+}
 
-## Sources:
-- [Wikipedia - Morse Code](https://en.wikipedia.org/wiki/Morse_code)
+int main() {
+    string input;
+    cout << "Enter text to translate into Morse code: ";
+    getline(cin, input);
+
+    cout << "Morse Code Translation: " << translateToMorse(input) << endl;
+    return 0;
+}
